@@ -1,8 +1,14 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import {
+    BrowserRouter as Router,
+    Switch,
+    NavLink,
+    Route,
+    withRouter
+} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SiteAppBar() {
+ function SiteAppBar() {
     const classes = useStyles();
 
     return (
@@ -27,8 +33,11 @@ export default function SiteAppBar() {
                     <Typography variant="h6" className={classes.title}>
                         Post and Albums
                     </Typography>
+                    <NavLink  to={{pathname:"/Posts"}}>Go to Posts</NavLink>
+                    <NavLink  to={{pathname:"/Albums"}}>Go to Album</NavLink>
                 </Toolbar>
             </AppBar>
         </div>
     );
 }
+export default SiteAppBar

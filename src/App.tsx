@@ -43,38 +43,13 @@ function App() {
     const classes = useStyles();
 
     return (
+        <Router>
         <div className="App">
             <header className="App-header">
                 <SiteAppBar/>
             </header>
             <Container maxWidth="sm">
-                <Router>
-                <Grid container className={classes.root} spacing={4}>
-                    <Grid item/>
-                    <Grid item>
-                        <Card className={classes.root} style={{marginTop: "1rem"}}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2">
-                                    View posts
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Link to={{pathname:"/Posts"}}>Go to Posts</Link>
-                            </CardActions>
-                        </Card>
-                        <Card className={classes.root} style={{marginTop: "1rem"}}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2">
-                                    View albums
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Link to={{pathname:"/Albums"}}>Go to Albums</Link>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                    <Grid item/>
-                </Grid>
+
                     <Switch>
                         <Route exact path="/Posts">
                             <Posts />
@@ -83,9 +58,10 @@ function App() {
                             <Albums />
                         </Route>
                     </Switch>
-                </Router>
             </Container>
         </div>
+        </Router>
+
     );
 }
 
