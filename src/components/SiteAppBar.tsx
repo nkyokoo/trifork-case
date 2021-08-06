@@ -3,11 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {
-    BrowserRouter as Router,
-    Switch,
     NavLink,
-    Route,
-    withRouter
 } from "react-router-dom";
 
 
