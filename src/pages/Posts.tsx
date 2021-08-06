@@ -17,15 +17,15 @@ const Posts = () => {
     useEffect(() => {
         getPosts()
     })
-    const listItems = posts.slice(0, 10).map((album: any) =>
-        <Grid item id={album.id} style={{marginTop:"1rem"}}>
+    const listItems = posts.slice(0, 10).map((post: any) =>
+        <Grid item id={post.id} style={{marginTop:"1rem"}}>
             <Card>
                 <CardContent>
                     <Typography variant="h5" component="h2">
-                        {album.title}
+                        {post.title}
                     </Typography>
                     <Typography variant="body2" component="p">
-                        {album.body}
+                        {post.body}
                     </Typography>
                 </CardContent>
             </Card>
