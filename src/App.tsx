@@ -1,30 +1,41 @@
-import React from 'react';
+import React, { lazy, Suspense} from 'react';
 import Container from '@material-ui/core/Container';
-import SiteAppBar from "./components/SiteAppBar"
-
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
-import Albums from "./pages/Albums"
-import Posts from "./pages/Posts"
+const Albums = lazy(() => import("./pages/Albums"))
+const Posts = lazy(() => import("./pages/Posts"))
+const Home = lazy(() => import("./pages/index"))
+const SiteAppBar = lazy(() => import("./components/SiteAppBar"))
 
 function App() {
     return (
         <Router>
         <div className="App">
             <header className="App-header">
-                <SiteAppBar/>
+                <Suspense fallback={ <span>loading</span>}>
+                    <SiteAppBar/>
+                </Suspense>
             </header>
             <Container maxWidth="sm">
 
                     <Switch>
                         <Route exact path="/Posts">
-                            <Posts />
+                            <Suspense fallback={ <span>loading</span>}>
+                                <Posts />
+                            </Suspense>
                         </Route>
                         <Route exact path="/Albums">
-                            <Albums />
+                            <Suspense fallback={ <span>loading</span>}>
+                                <Albums />
+                            </Suspense>
+                        </Route>
+                        <Route exact path="/">
+                            <Suspense fallback={ <span>loading</span>}>
+                                <Home />
+                            </Suspense>
                         </Route>
                     </Switch>
             </Container>

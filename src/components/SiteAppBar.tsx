@@ -13,6 +13,14 @@ const useStyles = makeStyles((theme) => ({
     },
     menuButton: {
         marginRight: theme.spacing(2),
+        backgroundColor: "red",
+        boxShadow:"4px 4px 0px 1px rgba(1,1,1,0.6)",
+        borderRadius:"4px",
+        color:"white",
+        fontFamily:"Arial",
+        fontSize:"15px",
+        padding:"6px 15px",
+        textDecoration:"none",
     },
     title: {
         flexGrow: 1,
@@ -29,8 +37,9 @@ const useStyles = makeStyles((theme) => ({
                     <Typography variant="h6" className={classes.title}>
                         Post and Albums
                     </Typography>
-                    <NavLink  to={{pathname:"/Posts"}}>Go to Posts</NavLink>
-                    <NavLink  to={{pathname:"/Albums"}}>Go to Album</NavLink>
+                    <NavLink className={classes.menuButton} to={{pathname:"/"}}>Go to home</NavLink>
+                    <NavLink className={classes.menuButton} to={{pathname:"/Posts"}}>Go to Posts</NavLink>
+                    <NavLink className={classes.menuButton} to={{pathname:"/Albums"}}>Go to Album</NavLink>
                 </Toolbar>
             </AppBar>
         </div>

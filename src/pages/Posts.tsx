@@ -1,25 +1,40 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
 import axios from 'axios'
 import Grid  from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Fade from '@material-ui/core/Fade';
 
 const Posts = () => {
-    const [posts, setPosts] = useState([])
+    const [state, dispatcher] = useReducer(reducer, {data:[]})
 
-    async function getPosts(){
-        let data : any
-        data = await axios.get("https://jsonplaceholder.typicode.com/posts")
-        console.log(data)
-        setPosts(data.data)
+    function reducer(state: any, action: any){
+        switch (action.type){
+            case "LOAD":
+                return {data: action.Payload}
+            default:
+                break;
+        }
     }
     useEffect(() => {
-        getPosts()
-    })
-    const listItems = posts.slice(0, 10).map((post: any) =>
-        <Grid item id={post.id} style={{marginTop:"1rem"}}>
-            <Card>
+        let Called : boolean = false;
+
+        async function getPosts(){
+            let data : any
+            data = await axios.get("https://jsonplaceholder.typicode.com/posts")
+            dispatcher({type:"LOAD", Payload: data.data})
+            Called = true;
+
+        }
+        if(!Called) {
+            getPosts()
+        }
+    }, [])
+    const listItems = state?.data.slice(0, 10).map((post: any) =>
+        <Grid item key={post.id} style={{marginTop:"1rem"}}>
+            <Fade in={true}>
+            <Card >
                 <CardContent>
                     <Typography variant="h5" component="h2">
                         {post.title}
@@ -29,6 +44,7 @@ const Posts = () => {
                     </Typography>
                 </CardContent>
             </Card>
+            </Fade>
         </Grid>
     );
     return (
